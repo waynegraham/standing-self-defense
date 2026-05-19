@@ -1,0 +1,7 @@
+{
+  "extends": ["html-validate:recommended"],
+  "plugins": ["html-validate-plugin-nunjucks"],
+  "rules": {
+    "html-validate/ignore-nunjucks": true
+  }
+}

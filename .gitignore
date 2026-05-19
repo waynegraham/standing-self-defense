@@ -1,0 +1,12 @@
+node_modules/
+_site/
+.cache
+.jekyll-cache
+.venv
+scratch.html
+.DS_Store
+package-lock.json
+# Lint cache files
+.eslintcache
+.codex
+.pnpm-store/

@@ -1,0 +1,8 @@
+node_modules
+_site
+.cache
+.jekyll-cache
+*.log
+dist
+coverage
+pnpm-lock.yaml
