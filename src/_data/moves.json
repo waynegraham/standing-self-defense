@@ -1,6 +1,6 @@
 [
   {
-    "label": "Standing Self-Defense Techniques",
+    "label": "Distance and strikes",
     "moves": [
       {
         "name": "Close the gap",
@@ -26,7 +26,12 @@
         "name": "T-Position Hip Throw",
         "note": "",
         "youtube": "3XdoMTbPGkc?start=6"
-      },
+      }
+    ]
+  },
+  {
+    "label": "Wrist and lapel grabs",
+    "moves": [
       {
         "name": "Wrist Grab Escape (same side)",
         "note": "pull between thumb and fingers",
@@ -49,18 +54,28 @@
       },
       {
         "name": "Single-Hand Lapel Grab Defense (palm turned up)",
-        "note": " high lapel grab, wrist lock with leg trip",
+        "note": "high lapel grab, wrist lock with leg trip",
         "youtube": "JBk6mHwDIZE?start=7"
       },
       {
         "name": "Two-Handed Lapel Grab Defense (with hip throw)",
         "note": "high grab to head and arm hip throw",
         "youtube": "9QA0L4aOOKk?start=10"
-      },
+      }
+    ]
+  },
+  {
+    "label": "Chokes and head control",
+    "moves": [
       {
         "name": "Two-Handed Front Choke Defense",
         "note": "support elbows, duck under and step back",
         "youtube": "70l_wIaC7D4?start=21"
+      },
+      {
+        "name": "Single Hand Front Choke Defense (against wall)",
+        "note": "strike wrist, turn, elbow to head",
+        "youtube": "DFNbQsnY5G8?start=8"
       },
       {
         "name": "Standing Hair Grab Defense",
@@ -72,6 +87,21 @@
         "note": "both hands grab wrist, pull and turn",
         "youtube": "Xk4dzbJWdlw?start=16"
       },
+      {
+        "name": "Headlock Defense (attacker upright)",
+        "note": "cup chin, look up, squat and lift leg",
+        "youtube": "knmZ0Tq79Qc?start=10"
+      },
+      {
+        "name": "Headlock Defense (with punch)",
+        "note": "grab wrist and elbow, hips in, go under arm to bent arm lock",
+        "youtube": "fuPmbVatB9Q?start=8"
+      }
+    ]
+  },
+  {
+    "label": "Bear hugs",
+    "moves": [
       {
         "name": "Rear Bear Hug Defense (over the arms)",
         "note": "be sure to have hips engaged",
@@ -91,21 +121,6 @@
         "name": "Front Bear Hug Defense (under the arms with frame)",
         "note": "frame face drop back",
         "youtube": "5uFxsir7z0k?start=12"
-      },
-      {
-        "name": "Single Hand Front Choke Defense (against wall)",
-        "note": "strike wrist, turn, elbow to head",
-        "youtube": "DFNbQsnY5G8?start=8"
-      },
-      {
-        "name": "Headlock Defense (attacker upright)",
-        "note": "cup chin, look up, squat and lift leg",
-        "youtube": "knmZ0Tq79Qc?start=10"
-      },
-      {
-        "name": "Headlock Defense (with punch)",
-        "note": "grab wrist and elbow, hips in, go under arm to bent arm lock",
-        "youtube": "fuPmbVatB9Q?start=8"
       }
     ]
   }

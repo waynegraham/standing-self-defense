@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ metadata.title }}</title>
     <meta name="description" content="{{ metadata.description }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link media="screen" rel="stylesheet" href="{{ '/site.css' }}"/>
 </head>
 <body>
+    {% include "navigation.njk" %}
     {{ content | safe }}
-
-    {# {% include "footer.njk" %} #}
+    {% include "footer.njk" %}
 </body>
 </html>

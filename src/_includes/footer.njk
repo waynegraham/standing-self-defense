@@ -1,5 +1,5 @@
-<footer class="mb-16 px-4 md:px-8">
-    <div class="mx-auto max-w-4xl">
+<footer class="site-footer">
+    <div class="site-footer-inner">
         <ul class="font-sm mt-8 flex flex-col space-y-2 space-x-0 text-neutral-600 md:flex-row md:space-y-0 md:space-x-4 dark:text-neutral-300">
             <li>
                 <a
@@ -9,7 +9,8 @@
                   href="https://github.com/waynegraham"
                 >
                   github
-                  {# <GoArrowUpRight aria-hidden="true"/> #}
+                  <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+                  <span class="visually-hidden">opens in a new tab</span>
                 </a>
             </li>
             <li>
@@ -17,10 +18,11 @@
                   class="inline-flex items-center gap-1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://github.com/waynegraham/belt-progressions/"
+                  href="https://github.com/waynegraham/standing-self-defense/"
                 >
                   view sourcecode
-                  {# <GoArrowUpRight aria-hidden="true"/> #}
+                  <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+                  <span class="visually-hidden">opens in a new tab</span>
                 </a>
             </li>
             <li>
@@ -28,16 +30,17 @@
                   class="inline-flex items-center gap-1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://github.com/waynegraham/belt-progressions/blob/main/LICENSE"
+                  href="https://github.com/waynegraham/standing-self-defense/blob/main/LICENSE"
                 >
                   mit license
-                  {# <GoArrowUpRight aria-hidden="true"/> #}
+                  <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+                  <span class="visually-hidden">opens in a new tab</span>
                 </a>
             </li>
         </ul>
 
         <p class="mt-8 text-neutral-600 dark:text-neutral-300">
-              &copy; {{ new Date().getFullYear() }} <a href="https://waynegraham.github.io">Wayne Graham</a>
+          &copy; {% year %} <a href="https://waynegraham.github.io">Wayne Graham</a>
         </p>
     </div>
 </footer>

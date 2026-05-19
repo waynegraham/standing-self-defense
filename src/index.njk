@@ -2,4 +2,156 @@
 layout: base.njk
 ---
 
-hi
+<main class="site-main">
+  <section class="hero">
+    <p class="eyebrow">Blacklight Futures</p>
+    <h1>Standing self-defense for library workers</h1>
+    <p class="lede">
+      A compact reference for workplace safety practice with library staff,
+      software developers, and other technical colleagues who may find
+      themselves helping in public-facing spaces.
+    </p>
+  </section>
+
+  <section class="principles" aria-labelledby="principles-heading">
+    <h2 id="principles-heading">Start with safety</h2>
+    <div class="principle-grid">
+      <article>
+        <h3>De-escalate first</h3>
+        <p>
+          Use distance, calm speech, open hands, and help from nearby staff
+          before a situation becomes physical.
+        </p>
+      </article>
+      <article>
+        <h3>Escape beats control</h3>
+        <p>
+          The goal is not to win a fight. Create enough space to leave,
+          protect others, and get support.
+        </p>
+      </article>
+      <article>
+        <h3>Practice with care</h3>
+        <p>
+          These notes follow ideas emphasized in Gracie self-defense curricula,
+          but they are only reminders. Train slowly with qualified instruction.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="moves" aria-labelledby="moves-heading">
+    <div class="section-heading">
+      <p class="eyebrow">Reference guide</p>
+      <h2 id="moves-heading">Move reminders by situation</h2>
+    </div>
+
+    <div class="use-note">
+      <p>
+        Use this list as a workshop reminder, not as standalone instruction.
+        De-escalate when you can, create space to leave, and get help from
+        nearby staff or security.
+      </p>
+    </div>
+
+    <div class="move-tools">
+      <div class="filter-field">
+        <label for="move-filter">Find a move</label>
+        <input
+          id="move-filter"
+          type="search"
+          autocomplete="off"
+          placeholder="Try wrist, choke, bear hug..."
+          aria-describedby="move-filter-help filter-count"
+        >
+        <p id="move-filter-help">Filter by situation, technique name, or note.</p>
+      </div>
+
+      <nav class="jump-list" aria-label="Move categories">
+        {% for group in moves %}
+          <a href="#move-group-{{ loop.index }}">{{ group.label }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+
+    <p id="filter-count" class="filter-count" aria-live="polite"></p>
+    <p id="no-results" class="no-results" hidden>No matching moves.</p>
+
+    {% for group in moves %}
+      <section
+        id="move-group-{{ loop.index }}"
+        class="move-group"
+        aria-labelledby="move-group-heading-{{ loop.index }}"
+        data-move-group
+      >
+        <div class="move-group-heading">
+          <h3 id="move-group-heading-{{ loop.index }}">{{ group.label }}</h3>
+          <p>{{ group.moves | length }} reminders</p>
+        </div>
+
+      <ol class="move-list">
+        {% for move in group.moves %}
+          <li
+            class="move-item"
+            data-move-item
+            data-search="{{ group.label }} {{ move.name }} {{ move.note }}"
+          >
+            <div>
+              <h4>{{ move.name }}</h4>
+              {% if move.note %}
+                <p>{{ move.note }}</p>
+              {% endif %}
+            </div>
+            {% if move.youtube %}
+              <a
+                class="move-link"
+                href="https://www.youtube.com/watch?v={{ move.youtube | replace('?start=', '&t=') }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Watch video reminder for {{ move.name }}"
+              >
+                Video
+                <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+                <span class="visually-hidden">opens in a new tab</span>
+              </a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+      </section>
+    {% endfor %}
+  </section>
+</main>
+
+<script>
+  const moveFilter = document.querySelector('#move-filter');
+  const moveItems = Array.from(document.querySelectorAll('[data-move-item]'));
+  const moveGroups = Array.from(document.querySelectorAll('[data-move-group]'));
+  const filterCount = document.querySelector('#filter-count');
+  const noResults = document.querySelector('#no-results');
+
+  function updateMoveFilter() {
+    const query = moveFilter.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    moveItems.forEach((item) => {
+      const isVisible = item.dataset.search.toLowerCase().includes(query);
+      item.hidden = !isVisible;
+      if (isVisible) visibleCount += 1;
+    });
+
+    moveGroups.forEach((group) => {
+      const hasVisibleItems = group.querySelectorAll('[data-move-item]:not([hidden])').length > 0;
+      group.hidden = !hasVisibleItems;
+    });
+
+    filterCount.textContent = query
+      ? `${visibleCount} matching ${visibleCount === 1 ? 'move' : 'moves'}`
+      : '';
+    noResults.hidden = visibleCount > 0;
+  }
+
+  if (moveFilter) {
+    moveFilter.addEventListener('input', updateMoveFilter);
+  }
+</script>
