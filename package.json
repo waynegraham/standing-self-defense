@@ -1,0 +1,75 @@
+{
+  "name": "forum2026.diglib.org",
+  "version": "1.0.0",
+  "description": "DLF Forum 2026 site",
+  "main": "index.js",
+  "scripts": {
+    "build": "run-s clean build:eleventy build:postcss",
+    "build:eleventy": "cross-env ELEVENTY_PRODUCTION=true eleventy",
+    "build:postcss": "cross-env NODE_ENV=production postcss src/styles/*.css --dir _site",
+    "clean": "rimraf _site",
+    "debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
+    "dev": "run-p dev:eleventy dev:postcss",
+    "dev:eleventy": "cross-env NODE_ENV=development eleventy --serve",
+    "dev:postcss": "cross-env NODE_ENV=development postcss src/styles/*.css --dir _site --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
+    "lint:css:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
+    "lint:html": "html-validate \"src/**/*.{html,njk}\"",
+    "lint": "pnpm lint:js && pnpm lint:css",
+    "test": "pnpm build && node --test tests/site.test.mjs",
+    "prepare": "husky install"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm dlx lint-staged",
+    "pre-push": "npm run format",
+    "preserveUnused": [
+      "commit-msg"
+    ]
+  },
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "tailwindcss",
+    "postcss"
+  ],
+  "author": "CLIR",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-navigation": "^1.0.5",
+    "@11tyrocks/eleventy-plugin-emoji-readtime": "^1.0.1",
+    "@tailwindcss/postcss": "^4.3.0",
+    "cross-env": "^10.1.0",
+    "cssnano": "^8.0.1",
+    "eleventy-plugin-hubspot": "^2.0.0",
+    "eslint": "^10.3.0",
+    "git-branch": "^2.0.1",
+    "glob": "^13.0.6",
+    "html-minifier-terser": "^7.2.0",
+    "luxon": "^3.7.2",
+    "markdown-it": "^14.1.1",
+    "markdown-it-attrs": "^4.3.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.14",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
+    "postcss-nested": "^7.0.2",
+    "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "rimraf": "^6.1.3",
+    "stylelint": "^16.26.1",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "pretty-quick": "^4.2.2",
+    "simple-git-hooks": "^2.13.1",
+    "stylelint-config-standard": "^39.0.1",
+    "stylelint-config-tailwindcss": "^1.0.1"
+  }
+}
