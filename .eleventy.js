@@ -168,8 +168,7 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromISO(value).toFormat(format);
   });
 
-  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
-
+  eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
 
   eleventyConfig.addFilter('groupbyIterable', function (arr, key) {
     const grouped = arr.reduce((acc, item) => {
