@@ -20,7 +20,7 @@
     "lint:html": "html-validate \"src/**/*.{html,njk}\"",
     "lint": "pnpm lint:js && pnpm lint:css",
     "test": "pnpm build && node --test tests/site.test.mjs",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm dlx lint-staged",

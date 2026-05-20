@@ -107,11 +107,13 @@ layout: base.njk
                 href="https://www.youtube.com/watch?v={{ move.youtube | replace('?start=', '&t=') }}"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-video-link
+                data-youtube="{{ move.youtube }}"
+                data-move-name="{{ move.name }}"
                 aria-label="Watch video reminder for {{ move.name }}"
               >
                 Video
-                <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
-                <span class="visually-hidden">opens in a new tab</span>
+                <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
               </a>
             {% endif %}
           </li>
@@ -122,12 +124,36 @@ layout: base.njk
   </section>
 </main>
 
+<dialog class="video-modal" aria-labelledby="video-modal-title" data-video-modal>
+  <div class="video-modal-panel">
+    <div class="video-modal-header">
+      <h2 id="video-modal-title">Video reminder</h2>
+      <button class="video-modal-close" type="button" data-video-close aria-label="Close video">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="video-frame-wrap">
+      <iframe
+        title=""
+        data-video-frame
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</dialog>
+
 <script>
   const moveFilter = document.querySelector('#move-filter');
   const moveItems = Array.from(document.querySelectorAll('[data-move-item]'));
   const moveGroups = Array.from(document.querySelectorAll('[data-move-group]'));
   const filterCount = document.querySelector('#filter-count');
   const noResults = document.querySelector('#no-results');
+  const videoModal = document.querySelector('[data-video-modal]');
+  const videoFrame = document.querySelector('[data-video-frame]');
+  const videoTitle = document.querySelector('#video-modal-title');
+  const videoClose = document.querySelector('[data-video-close]');
+  let lastVideoTrigger = null;
 
   function updateMoveFilter() {
     const query = moveFilter.value.trim().toLowerCase();
@@ -152,5 +178,72 @@ layout: base.njk
 
   if (moveFilter) {
     moveFilter.addEventListener('input', updateMoveFilter);
+  }
+
+  function getYouTubeEmbedUrl(youtubeValue) {
+    const [videoId, queryString] = youtubeValue.split('?');
+    const params = new URLSearchParams(queryString || '');
+    const start = params.get('start');
+    const embedParams = new URLSearchParams({
+      autoplay: '1',
+      rel: '0',
+    });
+
+    if (start) {
+      embedParams.set('start', start);
+    }
+
+    return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${embedParams}`;
+  }
+
+  function closeVideoModal() {
+    if (!videoModal || !videoFrame) return;
+
+    videoFrame.removeAttribute('src');
+    videoFrame.title = '';
+    videoModal.close();
+    document.body.classList.remove('modal-open');
+
+    if (lastVideoTrigger) {
+      lastVideoTrigger.focus();
+    }
+  }
+
+  function openVideoModal(trigger) {
+    if (!videoModal || !videoFrame || typeof videoModal.showModal !== 'function') return;
+
+    const moveName = trigger.dataset.moveName || 'video reminder';
+    lastVideoTrigger = trigger;
+    videoTitle.textContent = moveName;
+    videoFrame.title = `${moveName} video`;
+    videoFrame.src = getYouTubeEmbedUrl(trigger.dataset.youtube);
+    document.body.classList.add('modal-open');
+    videoModal.showModal();
+  }
+
+  document.querySelectorAll('[data-video-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!videoModal || typeof videoModal.showModal !== 'function') return;
+
+      event.preventDefault();
+      openVideoModal(link);
+    });
+  });
+
+  if (videoClose) {
+    videoClose.addEventListener('click', closeVideoModal);
+  }
+
+  if (videoModal) {
+    videoModal.addEventListener('click', (event) => {
+      if (event.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+
+    videoModal.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeVideoModal();
+    });
   }
 </script>

@@ -10,3 +10,4 @@ package-lock.json
 .eslintcache
 .codex
 .pnpm-store/
+.playwright-cli/
