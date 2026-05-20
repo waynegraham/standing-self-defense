@@ -51,8 +51,8 @@ importers:
         specifier: ^14.1.1
         version: 14.1.1
       markdown-it-attrs:
-        specifier: ^4.3.1
-        version: 4.3.1(markdown-it@14.1.1)
+        specifier: ^4.5.0
+        version: 4.5.0(markdown-it@14.1.1)
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -1860,8 +1860,8 @@ packages:
     resolution: {integrity: sha512-4y7uGv8bd2WdM9vpQsiQNo41Ln1NvhvDRuVt0k2JZQ+ezN2uaQes7lZeZ+QQUHOLQAtDaBJ+7wCbi+ab/KFs+w==}
     engines: {node: '>=0.10.0'}
 
-  markdown-it-attrs@4.3.1:
-    resolution: {integrity: sha512-/ko6cba+H6gdZ0DOw7BbNMZtfuJTRp9g/IrGIuz8lYc/EfnmWRpaR3CFPnNbVz0LDvF8Gf1hFGPqrQqq7De0rg==}
+  markdown-it-attrs@4.5.0:
+    resolution: {integrity: sha512-dsuEyK/MDAYsdZLDIaDAQXz5+gP0AAbJ4ZjOSB0w+ZGe4lLbzyCgGg0LApC6j9zUK2F+2SA9VkzXfyNG9hL/8g==}
     engines: {node: '>=6'}
     peerDependencies:
       markdown-it: '>= 9.0.0'
@@ -4904,7 +4904,7 @@ snapshots:
     dependencies:
       object-visit: 1.0.1
 
-  markdown-it-attrs@4.3.1(markdown-it@14.1.1):
+  markdown-it-attrs@4.5.0(markdown-it@14.1.1):
     dependencies:
       markdown-it: 14.1.1
 
